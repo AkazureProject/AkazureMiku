@@ -1,0 +1,87 @@
+<style type="text/css">
+    body {background-color: white;}
+    hr {color:39C5BB;}
+    .right{float:right; padding-right:1.5em;}
+    .left{float:left; padding-left: 1em;}
+    .webpageWideDiv {width:100%}
+    #navigation {position:fixed; top:0px; left:0px; height:5%; background-color: black; z-index: 2; }
+    #navigation div a {display:block; color:white;}
+    #header {position: relative; width:100%; height:18%; padding-top:1.5%;}
+    .headerText {text-align: center;font-family: Georgia,"华文中宋"; color:39C5BB;}
+    #siteTitle { letter-spacing: 1em; line-height: -5em; white-space: pre;}
+    #welcome {height:75%; background-color: aqua;}
+    #indexContent {height:100%}
+    #posts {width:70%;}
+    #toolbar {width:25%;}
+    #foot {padding-bottom:3em; height:3em}
+    /* 填充模块 */
+    #TEST {height: 100%;}
+    #TEST.p {text-align:justify}
+</style>
+<html>
+<head>
+    <title>mysite</title>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <div id="navigation" class="webpageWideDiv">
+        <div id="naviLeft" class="left">
+            <a>This is the left</a>
+        </div>
+        <div id="naviRight" class="right">
+            <a>This is the right (用JS写循环)</a>
+        </div>
+    </div>
+    <!-- 网站头部 -->
+    <div id="header" class="webpageWideDiv">
+        <!-- 站名 -->
+        <h1 id="siteTitle" class="headerText">{{siteTitle}}</h1>
+        <!-- 站副标题 -->
+        <h3 id="siteViceTitle" class="headerText"><p>{{siteViceTitle}}</p></h3>
+    </div>
+    <hr>
+    <!-- 欢迎图 -->
+    <div id="welcome" class="webpageWideDiv">
+    </div>
+    <!-- 内容块 -->
+    <div id="indexContent" class="webpageWideDiv">
+        <div id="posts" class="left"></div>
+        <div id="toolbar" class="right"></div>
+    </div>
+    <!-- 测试模块 -->
+    <div id="TEST">
+        <p>
+            x
+        </p>
+    </div>
+    <!-- 网站尾部 -->
+    <div id="foot" class="webpageWideDiv">
+        <hr>
+        <div id="copyright" class="left" v-html="leftInfo.copyright"></div>
+        <div id="toTop" class="right" v-html="rightInfo.toTop"></div>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var get_siteTitle=function(){return "愚馆";};
+    var get_siteViceTitle=function(){return "Scientia ipsa potentia ist"};
+    var header=new Vue({
+        el:'#header',
+        data:{
+            siteTitle:" "+get_siteTitle(),
+            siteViceTitle:" "+get_siteViceTitle(),
+        }
+    })
+    var foot=new Vue({
+        el:'#foot',
+        data:{
+            leftInfo:{
+                copyright:'© 2020 Powered by WordPress'
+            },
+            rightInfo:{
+                toTop:'<a id="footToTop" href="/#header">↑ To the top</a>'
+            },
+        }
+    })
+</script>
+</body>
+</html>
